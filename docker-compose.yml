@@ -1,0 +1,31 @@
+version: '3'
+services:
+  odoo:
+    build: .
+    env_file: .env
+    depends_on:
+      - postgres
+    ports:
+      - "8000:8069"
+    volumes:
+      - data:/var/lib/odoo
+      - ./work:/mnt/extra-addons
+      - ./odoo.conf:/etc/odoo/odoo.conf
+    environment:
+      - VIRTUAL_HOST=odoo.local
+      - ODOO_COMMAND= --update all --stop-after-init --load=base,web,openupgrade_framework
+  postgres:
+    image: postgres:13
+    env_file: .env
+    volumes:
+      - db:/var/lib/postgresql/data/pgdata
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+volumes:
+  data:
+  db:
+  migration:
