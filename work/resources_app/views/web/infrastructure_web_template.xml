@@ -1,0 +1,67 @@
+<odoo>
+    <template id="infrastructure_web_template" name="infrastructure_web_template">
+        <t t-call="website.layout">
+            <t t-set="title">Infrastructures</t>
+            <div class="container my-5">
+                <h3 class="title">INFRASTRUCTURES AND RESOURCES</h3>
+                <div class="row">
+                    <div class="col-md-4" >
+                        <div class="card filter-card">
+                            <div class="card-body">
+                                <h5 class="title-filter">Research Application Themes</h5>
+                                <div class="button-container">
+                                    <t t-foreach="themes" t-as="theme">
+                                        <t t-if="theme.name == selectedTheme">
+                                            <button type="button" class="button filter-btn theme-btn selected" t-att-data-theme="theme.name"><t t-esc="theme.name"/></button>
+                                        </t>
+                                        <t t-if="theme.name != selectedTheme">
+                                            <button type="button" class="button filter-btn theme-btn" t-att-data-theme="theme.name"><t t-esc="theme.name"/></button>
+                                        </t>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" >
+                        <div class="card filter-card">
+                            <div class="card-body">
+                                <h5 class="title-filter">Keywords</h5>
+                                <div class="button-container">
+                                    <t t-foreach="keywords" t-as="keyword">
+                                        <t t-if="keyword.name == selectedKeywords">
+                                            <button type="button" class="button filter-btn keyword-btn small-btn selected" t-att-data-keyword="keyword.name"><t t-esc="keyword.name"/></button>
+                                        </t>
+                                        <t t-if="keyword.name != selectedKeywords">
+                                            <button type="button" class="button filter-btn keyword-btn small-btn" t-att-data-keyword="keyword.name"><t t-esc="keyword.name"/></button>
+                                        </t>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" >
+                        <div class="card filter-card">
+                            <div class="card-body">
+                                <h5 class="title-filter">Home partner institution</h5>
+                                <div class="button-container">
+                                    <t t-foreach="universities" t-as="university">
+                                        <t t-if="university.name == selectedUniversity">
+                                            <button type="button" class="button filter-btn university-btn selected" t-att-data-university="university.name"><t t-esc="university.name"/></button>
+                                        </t>
+                                        <t t-if="university.name != selectedUniversity">
+                                            <button type="button" class="button filter-btn university-btn" t-att-data-university="university.name"><t t-esc="university.name"/></button>
+                                        </t>
+                                        
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="infrastructures-container" class="row">
+                    <t t-call="resources_app.infrastructure_list"/>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
