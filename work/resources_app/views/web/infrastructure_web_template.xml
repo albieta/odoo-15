@@ -45,11 +45,11 @@
                                 <h5 class="title-filter">Home partner institution</h5>
                                 <div class="button-container">
                                     <t t-foreach="universities" t-as="university">
-                                        <t t-if="university.name == selectedUniversity">
-                                            <button type="button" class="button filter-btn university-btn selected" t-att-data-university="university.name"><t t-esc="university.name"/></button>
+                                        <t t-if="university['name'] == selectedUniversity">
+                                            <button type="button" class="button filter-btn university-btn selected" t-att-data-university="university['name']"><t t-esc="university['name']"/></button>
                                         </t>
-                                        <t t-if="university.name != selectedUniversity">
-                                            <button type="button" class="button filter-btn university-btn" t-att-data-university="university.name"><t t-esc="university.name"/></button>
+                                        <t t-if="university['name'] != selectedUniversity">
+                                            <button type="button" class="button filter-btn university-btn" t-att-data-university="university['name']"><t t-esc="university['name']"/></button>
                                         </t>
                                         
                                     </t>

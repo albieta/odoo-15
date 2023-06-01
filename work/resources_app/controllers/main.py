@@ -2,11 +2,14 @@ from odoo import http
 from werkzeug.wrappers import Response
 import json
 import math
+import logging
+
+_logger = logging.getLogger(__name__)
 
 #if we want to check auth, add --> auth="my_api_key" <-- in the @http.route
 
 class Resources(http.Controller):
-    @http.route("/resources/infrastructure", methods=["GET"], website=True)
+    @http.route("/resources/infrastructure", methods=["GET"], website=True, auth='public')
     def list(self, *args, **kwargs):
 
         #search elements
@@ -14,7 +17,7 @@ class Resources(http.Controller):
         Keyword = http.request.env["resources.keyword"]
         universities = http.request.env['res.partner'].search([
             ('id', 'in', http.request.env["resources.infrastructure"].search([]).mapped('home_partner_institution.id'))
-        ])
+        ]).read(['name'])
         applicationThemes = ApplicationTheme.search([])
         keywords = Keyword.search([])
 
@@ -28,7 +31,7 @@ class Resources(http.Controller):
             }
         )
 
-    @http.route("/resources/infrastructure/filtered", methods=["POST"], csrf=False)
+    @http.route("/resources/infrastructure/filtered", methods=["POST"], csrf=False, auth='public')
     def filtered(self, *args, **kwargs):
         theme = kwargs.get("theme")
         university = kwargs.get("university")
@@ -43,7 +46,8 @@ class Resources(http.Controller):
             domain.append(('research_application_theme', '=', theme))
 
         if university:
-            domain.append(('home_partner_institution', '=', university))
+            
+            domain.append(('home_partner_institution.name', '=', university))
 
         if keywords_str:
             keyword_names = keywords_str.split(',')
