@@ -1,6 +1,6 @@
 <odoo>
 	<!-- Resources App menu -->
-	<menuitem id="menu_resources" name="Resources" />
+	<menuitem id="menu_resources" name="Resources" web_icon="resources_app,static/description/icon.png"/>
 	<!-- Action to open the Resources list --> 
  	<record id="action_resources_infrastructure" model="ir.actions.act_window">
  		<field name="name">Infrastructures</field>
