@@ -63,9 +63,9 @@
                         <p style="text-align:  justify; "><t t-esc="res.equipment"/></p>
 
 
-                        <h3 class="secondary-half secondary-title">Research Application Themes:</h3>
+                        <h3 class="secondary-half secondary-title">Scientific domain(s):</h3>
                         <h3 class="secondary-half secondary-title">Own Technical Staff:</h3>
-                        <p class="secondary-half"><span t-foreach="res.research_application_theme" t-as="theme"><t t-esc="theme.name"/><t t-if="not theme==res.research_application_theme[-1]">, </t></span></p>
+                        <p class="secondary-half"><span t-foreach="res.scientific_domain" t-as="theme"><t t-esc="theme.name"/><t t-if="not theme==res.scientific_domain[-1]">, </t></span></p>
                         <p class="secondary-half"><t t-if="res.technical_staff">Yes</t><t t-if="not res.technical_staff">No</t></p>
                         
                         <h3 class="secondary-half secondary-title">Existing Booking System to host external user:</h3>

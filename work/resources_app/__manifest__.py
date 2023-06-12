@@ -15,6 +15,8 @@
 	    "views/resources_menu.xml",
         "views/infrastructure.xml",
         "views/capacity.xml",
+        "views/keywords.xml",
+        "views/scientific_domain.xml",
         "views/web/infrastructure_web_template.xml",
         "views/web/infrastructure_web_menu.xml",
         "views/web/infrastructure_list.xml",
@@ -26,7 +28,7 @@
         "reports/resource_infrastructure_report.xml",
     ],
     'assets': {
-        "web.assets_frontend": {
+        "resources_app.assets_frontend": {
             "resources_app/static/src/css/resource_web_template.css",
             "resources_app/static/src/js/resource_web_template.js",
             

@@ -25,10 +25,11 @@
                         <field name="equipment"/>
                         <field name="web_link"/>
                         <field name="keywords" widget="many2many_tags"/>
-                        <field name="research_application_theme" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="scientific_domain" widget="many2many_tags"/>
                         <field name="technical_staff"/>
                         <field name="booking_system"/>
                         <field name="remote_access_policy"/>
+                        <field name="external_users"/>
                         <field name="contact_person">
                             <tree>
                                 <field name="name"/>

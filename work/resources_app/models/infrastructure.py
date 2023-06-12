@@ -15,7 +15,8 @@ class resourcesInfrastructure(models.Model):
     technical_staff = fields.Boolean(string="Own technical staff")
     booking_system = fields.Boolean(string="Existing booking system to host external user")
     remote_access_policy = fields.Boolean(string="Established remote access policy")
-    research_application_theme = fields.Many2many('resources.application_theme', string="Research Application Themes", no_create=True)
+    scientific_domain = fields.Many2many('resources.scientific_domain', string="Scientific domain")
+    external_users = fields.Boolean(string="Open to external users")
     image = fields.Binary(string="Image")
     web_link = fields.Char(string="Website", widget="url")
 

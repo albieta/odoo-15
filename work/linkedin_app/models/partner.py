@@ -33,6 +33,8 @@ class ResPartnerInherit(models.Model):
             # GET a profile
             profile = api.get_profile(urllib.parse.unquote(self.linkedin).split("/in/")[1].strip("/"))
 
+            headline = profile['headline']
+
             image_url = profile['displayPictureUrl'] + profile['img_800_800']
 
             # Get the URL of the first image result
@@ -40,6 +42,10 @@ class ResPartnerInherit(models.Model):
                 image_data = urllib.request.urlopen(image_url).read()
                 self.write({
                     'image_1920': base64.b64encode(image_data),
+                })
+            if headline:
+                self.write({
+                    'function': headline
                 })
 
     @api.model 

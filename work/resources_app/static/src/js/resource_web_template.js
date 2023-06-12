@@ -1,11 +1,13 @@
 let resources = document.querySelectorAll('.resources');
-const themeButtons = document.querySelectorAll('.theme-btn');
+const themeDropdown = document.getElementById('theme-dropdown');
 const keywordButtons = document.querySelectorAll('.keyword-btn');
 const universityButtons = document.querySelectorAll('.university-btn');
+const openButtons = document.querySelectorAll('.open-btn');
 
 let selectedTheme = null;
 let selectedKeywords = [];
 let selectedUniversity = null;
+let selectedOpen = null;
 
 let page = 1; 
 
@@ -22,6 +24,9 @@ function requestInfrastructures() {
   }
   if (selectedUniversity) {
     data['university'] = selectedUniversity;
+  }
+  if(selectedOpen == 'False' || selectedOpen == 'True') {
+    data['open'] = selectedOpen;
   }
 
   $.ajax({
@@ -67,24 +72,27 @@ function updateFunctions() {
   });
 }
 
-$(document).ready(function() {
+
+console.log("HOLA JUAN v3");
+
+//$(document).ready(function() {
+addEventListener('DOMContentLoaded', (event) => {
+  console.log("DOCUMENT READY");
+  console.log(jQuery.isReady);
+
   $('.filter-btn').click(function() {
     page = 1;
     requestInfrastructures();
   });
-});
 
-themeButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    if (button.classList.contains('selected')) {
-      button.classList.remove('selected');
-      selectedTheme = null;
-    } else {
-      themeButtons.forEach(btn => btn.classList.remove('selected'));
-      button.classList.add('selected');
-      selectedTheme = button.dataset.theme;
-    }
-  });
+themeDropdown.addEventListener('change', () => {
+  const selectedOption = themeDropdown.options[themeDropdown.selectedIndex];
+  if (selectedOption.value === "") {
+    selectedTheme = null;
+  } else {
+    selectedTheme = selectedOption.value;
+  }
+  requestInfrastructures();
 });
 
 keywordButtons.forEach(button => {
@@ -112,5 +120,24 @@ universityButtons.forEach(button => {
   });
 });
 
+openButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    if (button.classList.contains('selected')) {
+      button.classList.remove('selected');
+      selectedOpen = null;
+    } else {
+      openButtons.forEach(btn => btn.classList.remove('selected'));
+      button.classList.add('selected');
+      if (button.textContent.trim() === 'Yes') {
+        selectedOpen = 'True';
+      } else if (button.textContent.trim() === 'No') {
+        selectedOpen = 'False';
+      }
+    }
+  });
+});
+
 //request infrastructures initially
 requestInfrastructures();
+});
+

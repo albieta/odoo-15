@@ -2,37 +2,41 @@ from odoo import http
 from werkzeug.wrappers import Response
 import json
 import math
+import logging
+
+_logger = logging.getLogger(__name__)
 
 #if we want to check auth, add --> auth="my_api_key" <-- in the @http.route
 
 class Resources(http.Controller):
-    @http.route("/resources/infrastructure", methods=["GET"], website=True)
+    @http.route("/resources/infrastructure", methods=["GET"], website=True, auth='public')
     def list(self, *args, **kwargs):
 
         #search elements
-        ApplicationTheme = http.request.env["resources.application_theme"]
+        ScientificDomain = http.request.env["resources.scientific_domain"]
         Keyword = http.request.env["resources.keyword"]
         universities = http.request.env['res.partner'].search([
             ('id', 'in', http.request.env["resources.infrastructure"].search([]).mapped('home_partner_institution.id'))
-        ])
-        applicationThemes = ApplicationTheme.search([])
+        ]).read(['name'])
+        scientificDomains = ScientificDomain.search([])
         keywords = Keyword.search([])
 
         return http.request.render(
             "resources_app.infrastructure_web_template",
             {
                 "page": 1,
-                "themes": applicationThemes,
+                "themes": scientificDomains,
                 "keywords": keywords,
                 "universities": universities
             }
         )
 
-    @http.route("/resources/infrastructure/filtered", methods=["POST"], csrf=False)
+    @http.route("/resources/infrastructure/filtered", methods=["POST"], csrf=False, auth='public')
     def filtered(self, *args, **kwargs):
         theme = kwargs.get("theme")
         university = kwargs.get("university")
         keywords_str = kwargs.get("keywords")
+        open = kwargs.get("open")
 
         page = int(kwargs.get('page', 1))
         items_per_page = 10
@@ -40,10 +44,15 @@ class Resources(http.Controller):
         domain = []
 
         if theme:
-            domain.append(('research_application_theme', '=', theme))
+            domain.append(('scientific_domain', '=', theme))
 
         if university:
-            domain.append(('home_partner_institution', '=', university))
+            domain.append(('home_partner_institution.name', '=', university))
+        _logger.info(open)
+        if open == 'True':
+            domain.append(('external_users', '=', True))
+        elif open == 'False':
+            domain.append(('external_users', '=', False))
 
         if keywords_str:
             keyword_names = keywords_str.split(',')

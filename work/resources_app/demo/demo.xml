@@ -21,6 +21,7 @@ open access facility and available for use by academic professionals and industr
           <field name="keywords" eval="[(4, ref('keyword_1'))]" />
           <field name="technical_staff" eval="True" />
           <field name="booking_system" eval="True" />
+          <field name="external_users" eval="False" />
           <field name="remote_access_policy" eval="True" />
         </record>
 
@@ -48,7 +49,7 @@ can be used to map stimulus responses simultaneously.'"/>
           <field name="technical_staff" eval="True" />
           <field name="booking_system" eval="True" />
           <field name="remote_access_policy" eval="True" />
-          <field name="research_application_theme" eval="[(6,0,[ref('energyApplicationTheme')])]"/>
+          <field name="scientific_domain" eval="[(6,0,[ref('mathematicsScientificDomain')])]"/>
         </record>
 
         <record id="infrastructure_3" model="resources.infrastructure">
@@ -64,7 +65,8 @@ loudspeakers and headphones, and high-quality microphones and other measurement 
           <field name="technical_staff" eval="True" />
           <field name="booking_system" eval="True" />
           <field name="remote_access_policy" eval="True" />
-          <field name="research_application_theme" eval="[(6,0,[ref('energyApplicationTheme')])]"/>
+          <field name="external_users" eval="True" />
+          <field name="scientific_domain" eval="[(6,0,[ref('universeSciencesScientificDomain')])]"/>
         </record>
 
         <record id="infrastructure_4" model="resources.infrastructure">
@@ -103,7 +105,8 @@ realization'"/>
           <field name="technical_staff" eval="False" />
           <field name="booking_system" eval="False" />
           <field name="remote_access_policy" eval="False" />
-          <field name="research_application_theme" eval="[(6,0,[ref('energyApplicationTheme')])]"/>
+          <field name="external_users" eval="True" />
+          <field name="scientific_domain" eval="[(6,0,[ref('materialsEngineeringScientificDomain')])]"/>
         </record>
 
         <record id="infrastructure_5" model="resources.infrastructure">
@@ -125,7 +128,8 @@ Device features include:
           <field name="technical_staff" eval="True" />
           <field name="booking_system" eval="False" />
           <field name="remote_access_policy" eval="False" />
-          <field name="research_application_theme" eval="[(6,0,[ref('energyApplicationTheme')])]"/>
+          <field name="external_users" eval="False" />
+          <field name="scientific_domain" eval="[(6,0,[ref('humanMobilityScientificDomain')])]"/>
         </record>
 
         <record id="infrastructure_6" model="resources.infrastructure">
@@ -145,7 +149,8 @@ analyse any desired data from the ocean.
           <field name="technical_staff" eval="True" />
           <field name="booking_system" eval="True" />
           <field name="remote_access_policy" eval="True" />
-          <field name="research_application_theme" eval="[(6,0,[ref('environmentApplicationTheme')])]"/>
+          <field name="external_users" eval="True" />
+          <field name="scientific_domain" eval="[(6,0,[ref('universeSciencesScientificDomain')])]"/>
         </record>
 
         <record id="infrastructure_7" model="resources.infrastructure">
@@ -166,7 +171,8 @@ computer-assisted surgery, computational drug design, production of medical devi
           <field name="technical_staff" eval="True" />
           <field name="booking_system" eval="False" />
           <field name="remote_access_policy" eval="False" />
-          <field name="research_application_theme" eval="[(6,0,[ref('healthEngineeringApplicationTheme')])]"/>
+          <field name="external_users" eval="True" />
+          <field name="scientific_domain" eval="[(6,0,[ref('universeSciencesScientificDomain')])]"/>
         </record>
 
         <record id="infrastructure_8" model="resources.infrastructure">
@@ -196,7 +202,8 @@ Maximum scanner displacements: 5 x 5 x 2 μm
           <field name="technical_staff" eval="True" />
           <field name="booking_system" eval="True" />
           <field name="remote_access_policy" eval="False" />
-          <field name="research_application_theme" eval="[(6,0,[ref('industry4ApplicationTheme')])]"/>
+          <field name="external_users" eval="False" />
+          <field name="scientific_domain" eval="[(6,0,[ref('universeSciencesScientificDomain')])]"/>
         </record>
 
         <record id="infrastructure_9" model="resources.infrastructure">
@@ -226,7 +233,8 @@ large memory nodes, accelerator systems with dedicated NVIDIA GPUs, and several 
           <field name="technical_staff" eval="True" />
           <field name="booking_system" eval="False" />
           <field name="remote_access_policy" eval="True" />
-          <field name="research_application_theme" eval="[(6,0,[ref('itElectronicsTelecomApplicationTheme')])]"/>
+          <field name="external_users" eval="True" />
+          <field name="scientific_domain" eval="[(6,0,[ref('universeSciencesScientificDomain')])]"/>
         </record>
 
     </data>
