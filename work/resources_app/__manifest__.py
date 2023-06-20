@@ -28,7 +28,7 @@
         "reports/resource_infrastructure_report.xml",
     ],
     'assets': {
-        "resources_app.assets_frontend": {
+        "web.assets_frontend": {
             "resources_app/static/src/css/resource_web_template.css",
             "resources_app/static/src/js/resource_web_template.js",
             
