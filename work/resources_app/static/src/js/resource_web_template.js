@@ -90,7 +90,7 @@ if (document.getElementById('infrastructures-container')) {
           if(event.added){
             selectedKeywords.push(event.value);
           } else {
-            selectedKeywords = selectedKeywords.filter(keyword => keyword !== event.value);
+            selectedKeywords = event.value;
           }
           requestInfrastructures();
         });

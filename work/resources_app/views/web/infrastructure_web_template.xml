@@ -3,7 +3,7 @@
         <t t-call="website.layout">
 	    <t t-set="title">Infrastructures</t>
             <div class="container my-5">
-                <h3 class="title">INFRASTRUCTURES AND RESOURCESi by JUAN v4</h3>
+                <h3 class="title">INFRASTRUCTURES AND RESOURCES</h3>
                 <div class="row">
                     <div class="col-md-4" >
                         <div class="card filter-card">
