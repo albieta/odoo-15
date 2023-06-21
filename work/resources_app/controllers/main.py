@@ -31,6 +31,20 @@ class Resources(http.Controller):
             }
         )
 
+    @http.route("/resources/infrastructure/keywords", methods=["GET"], auth='public')
+    def keywords(self, *args, **kwargs):
+
+
+        Keyword = http.request.env["resources.keyword"]
+        keywords = Keyword.search([])
+
+        keyword_names = [keyword.name for keyword in keywords]
+        response_data = {
+            "keywords": keyword_names
+        }
+        response_body = json.dumps(response_data)
+        return http.Response(response_body, content_type='application/json')
+
     @http.route("/resources/infrastructure/filtered", methods=["POST"], csrf=False, auth='public')
     def filtered(self, *args, **kwargs):
         theme = kwargs.get("theme")

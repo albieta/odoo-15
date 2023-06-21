@@ -33,15 +33,8 @@
                         <div class="card filter-card">
                             <div class="card-body">
                                 <h5 class="title-filter">Keywords</h5>
-                                <div class="button-container">
-                                    <t t-foreach="keywords" t-as="keyword">
-                                        <t t-if="keyword.name == selectedKeywords">
-                                            <button type="button" class="button filter-btn keyword-btn small-btn selected" t-att-data-keyword="keyword.name"><t t-esc="keyword.name"/></button>
-                                        </t>
-                                        <t t-if="keyword.name != selectedKeywords">
-                                            <button type="button" class="button filter-btn keyword-btn small-btn" t-att-data-keyword="keyword.name"><t t-esc="keyword.name"/></button>
-                                        </t>
-                                    </t>
+                                <div>
+                                    <span id="keywords" class="keywords-list"></span>
                                 </div>
                             </div>
                         </div>

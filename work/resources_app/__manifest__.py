@@ -31,7 +31,8 @@
         "web.assets_frontend": {
             "resources_app/static/src/css/resource_web_template.css",
             "resources_app/static/src/js/resource_web_template.js",
-            
+            "resources_app/static/src/css/selectivity-jquery.min.css",
+            "resources_app/static/src/js/selectivity-jquery.min.js",
         }
     }
 }

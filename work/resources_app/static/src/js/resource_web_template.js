@@ -1,9 +1,9 @@
 if (document.getElementById('infrastructures-container')) {
   let resources = document.querySelectorAll('.resources');
   const themeDropdown = document.getElementById('theme-dropdown');
-  const keywordButtons = document.querySelectorAll('.keyword-btn');
   const universityButtons = document.querySelectorAll('.university-btn');
   const openButtons = document.querySelectorAll('.open-btn');
+  let keywords = [];
 
   let selectedTheme = null;
   let selectedKeywords = [];
@@ -20,7 +20,6 @@ if (document.getElementById('infrastructures-container')) {
       data['theme'] = selectedTheme;
     }
     if (selectedKeywords.length > 0) {
-      console.log(selectedKeywords);
       data['keywords'] = selectedKeywords.join(',');
     }
     if (selectedUniversity) {
@@ -78,6 +77,29 @@ if (document.getElementById('infrastructures-container')) {
 
   $(document).ready(function() {
 
+    $.ajax({
+      type: "GET",
+      url: "/resources/infrastructure/keywords",
+      success: function(data) {
+        keywords = data.keywords;
+        $('#keywords').selectivity({
+          items: keywords,
+          multiple: true,
+        });
+        document.querySelector('.keywords-list').addEventListener('selectivity-change',function(event) {
+          if(event.added){
+            selectedKeywords.push(event.value);
+          } else {
+            selectedKeywords = selectedKeywords.filter(keyword => keyword !== event.value);
+          }
+          requestInfrastructures();
+        });
+      },
+      error: function(xhr, textStatus, errorThrown) {
+          console.log(textStatus + ': ' + errorThrown);
+      }
+    });
+
     themeDropdown.addEventListener('change', () => {
       const selectedOption = themeDropdown.options[themeDropdown.selectedIndex];
       if (selectedOption.value === "") {
@@ -86,20 +108,6 @@ if (document.getElementById('infrastructures-container')) {
         selectedTheme = selectedOption.value;
       }
       requestInfrastructures();
-    });
-
-    keywordButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        if (button.classList.contains('selected')) {
-          button.classList.remove('selected');
-          selectedKeywords = selectedKeywords.filter(keyword => keyword !== button.dataset.keyword);
-        } else {
-          button.classList.add('selected');
-          selectedKeywords.push(button.dataset.keyword);
-        }
-        page = 1;
-        requestInfrastructures();
-      });
     });
 
     universityButtons.forEach(button => {
