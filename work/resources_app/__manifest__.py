@@ -20,11 +20,6 @@
         "views/web/infrastructure_web_template.xml",
         "views/web/infrastructure_web_menu.xml",
         "views/web/infrastructure_list.xml",
-        "demo/universities.xml",
-        "demo/themes.xml",
-        "demo/keywords.xml",
-        "demo/contacts.xml",
-        "demo/demo.xml",
         "reports/resource_infrastructure_report.xml",
     ],
     'assets': {
