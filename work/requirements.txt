@@ -10,4 +10,4 @@ odoo-addons-oca-timesheet==15.0.20221206.0
 odoo-addons-oca-web==15.0.20230329.0
 odoo-addons-oca-website==15.0.20230324.0
 pysftp==0.2.9
-odoo-addons-oca-server-tools==15.0.20230324.0
+odoo-addons-oca-server-tools==15.0.20230323.0
