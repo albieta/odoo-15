@@ -22,20 +22,20 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <t t-if="res.image and res.image != False">
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <p class="card-text"><t t-esc="res.description"/></p>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <img t-attf-src="data:image/png;base64,{{ res.image.decode('utf-8') if res.image else '/path/to/default/image.png' }}" alt="Infrastructure Image" class="img-fluid"/>
-                                    </div>
-                                </div>
-                            </t>
-                            <t t-else="">
-                                <p class="card-text"><t t-esc="res.description"/></p>
-                            </t>
                             <ul class="list-group list-group-flush">
+                                <t t-if="res.image and res.image != False">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <li class="list-group-item"><t t-raw="res.description"/></li>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <img t-attf-src="data:image/png;base64,{{ res.image.decode('utf-8') if res.image else '/path/to/default/image.png' }}" alt="Infrastructure Image" class="img-fluid"/>
+                                        </div>
+                                    </div>
+                                </t>
+                                <t t-else="">
+                                    <li class="list-group-item"><t t-raw="res.description"/></li>
+                                </t>
                                 <li class="list-group-item"><strong>Equipment: </strong><t t-esc="res.equipment"/></li>
                                 <li class="list-group-item"><strong>Keywords: </strong><span t-foreach="res.keywords" t-as="keyword"><t t-esc="keyword.name"/><t t-if="not keyword==res.keywords[-1]">, </t></span></li>
                                 <li class="list-group-item"><strong>Technical staff available: </strong><t t-if="res.technical_staff">Yes</t><t t-if="not res.technical_staff">No</t></li>

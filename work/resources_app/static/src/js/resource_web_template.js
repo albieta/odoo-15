@@ -90,7 +90,7 @@ if (document.getElementById('infrastructures-container')) {
           if(event.added){
             selectedKeywords.push(event.value);
           } else {
-            selectedKeywords = event.value;
+            selectedKeywords = event.value.filter((value) => typeof value === 'string');
           }
           requestInfrastructures();
         });
