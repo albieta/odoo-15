@@ -11,6 +11,7 @@ services:
       - data:/var/lib/odoo
       - ./work:/mnt/extra-addons
       - ./odoo.conf:/etc/odoo/odoo.conf
+      - ./backups:/var/lib/odoo/backups
     environment:
       - VIRTUAL_HOST=odoo.local
       - ODOO_COMMAND= --update all --stop-after-init --load=base,web,openupgrade_framework
