@@ -1,16 +1,29 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 
-access_infrastructure_user,InfrastructureUser,model_resources_infrastructure,resources_group_user,1,1,1,0
+access_infrastructure_user,InfrastructureUser,model_resources_infrastructure,base.group_public,1,0,0,0
+access_infrastructure_portal,InfrastructurePortal,model_resources_infrastructure,base.group_portal,1,0,0,0
+access_infrastructure_internal,InfrastructureInternal,model_resources_infrastructure,base.group_user,1,0,0,0
 access_infrastructure_manager,InfrastructureManager,model_resources_infrastructure,resources_group_manager,1,1,1,1
 
-access_keyword_user,KeywordUser,model_resources_keyword,resources_group_user,1,1,1,0
+access_keyword_user,KeywordUser,model_resources_keyword,base.group_public,1,0,0,0
+access_keyword_portal,KeywordPortal,model_resources_keyword,base.group_portal,1,0,0,0
+access_keyword_internal,KeywordInternal,model_resources_keyword,base.group_user,1,0,0,0
 access_keyword_manager,KeywordManager,model_resources_keyword,resources_group_manager,1,1,1,1
 
-access_theme_user,ThemeUser,model_resources_application_theme,resources_group_user,1,1,1,0
-access_theme_manager,ThemeManager,model_resources_application_theme,resources_group_manager,1,1,1,1
+access_theme_user,ThemeUser,model_resources_scientific_domain,base.group_public,1,0,0,0
+access_theme_portal,ThemePortal,model_resources_scientific_domain,base.group_portal,1,0,0,0
+access_theme_internal,ThemeInternal,model_resources_scientific_domain,base.group_user,1,0,0,0
+access_theme_manager,ThemeManager,model_resources_scientific_domain,resources_group_manager,1,1,1,1
 
-access_capacity_user,CapacityUser,model_resources_capacity,resources_group_user,1,1,1,0
+access_capacity_user,CapacityUser,model_resources_capacity,base.group_public,1,0,0,0
+access_capacity_portal,CapacityPortal,model_resources_capacity,base.group_portal,1,0,0,0
+access_capacity_internal,CapacityInternal,model_resources_capacity,base.group_user,1,0,0,0
 access_capacity_manager,CapacityManager,model_resources_capacity,resources_group_manager,1,1,1,1
 
-access_website_user,WebsiteUser,website.model_website,resources_group_user,1,1,1,0
+access_website_user,WebsiteUser,website.model_website,base.group_public,1,0,0,0
+access_website_portal,WebsitePortal,website.model_website,base.group_portal,1,0,0,0
+access_website_internal,WebsiteInternal,website.model_website,base.group_user,1,0,0,0
 access_website_manager,WebsiteManager,website.model_website,resources_group_manager,1,1,1,1
+
+access_partner_infrastructures,PartnerInfrastructuresUser,base.model_res_partner,base.group_public,1,0,0,0
+access_partner_infrastructures_portal,PartnerInfrastructuresPortal,base.model_res_partner,base.group_portal,1,0,0,0

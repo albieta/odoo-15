@@ -11,9 +11,11 @@ services:
       - data:/var/lib/odoo
       - ./work:/mnt/extra-addons
       - ./odoo.conf:/etc/odoo/odoo.conf
+      - ./backups:/var/lib/odoo/backups
     environment:
       - VIRTUAL_HOST=odoo.local
       - ODOO_COMMAND= --update all --stop-after-init --load=base,web,openupgrade_framework
+    restart: always
   postgres:
     image: postgres:13
     env_file: .env
@@ -21,12 +23,14 @@ services:
       - "127.0.0.1:5432:5432"
     volumes:
       - db:/var/lib/postgresql/data/pgdata
+    restart: always
   nginx-proxy:
     image: jwilder/nginx-proxy
     ports:
       - "80:80"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
+    restart: always
 volumes:
   data:
   db:

@@ -1,6 +1,6 @@
 <odoo>
 	<!-- Resources App menu -->
-	<menuitem id="menu_resources" name="Resources" />
+	<menuitem id="menu_resources" name="Resources" web_icon="resources_app,static/description/icon.png"/>
 	<!-- Action to open the Resources list --> 
  	<record id="action_resources_infrastructure" model="ir.actions.act_window">
  		<field name="name">Infrastructures</field>
@@ -14,7 +14,22 @@
  		<field name="view_mode">tree,form</field>
  	</record>
 
+	<record id="action_resources_keyword" model="ir.actions.act_window">
+ 		<field name="name">Keywords</field>
+ 		<field name="res_model">resources.keyword</field>
+ 		<field name="view_mode">tree,form</field>
+ 	</record>
+
+	<record id="action_resources_scientific_domain" model="ir.actions.act_window">
+ 		<field name="name">Scientific Domains</field>
+ 		<field name="res_model">resources.scientific_domain</field>
+ 		<field name="view_mode">tree,form</field>
+ 	</record>
+
  	<!-- Menu item to open the Resources list -->
  	<menuitem id="menu_resources_infrastructure" name="Infrastructures" parent="menu_resources" action="action_resources_infrastructure"/>
 	<menuitem id="menu_resources_capacity" name="Capacities" parent="menu_resources" action="action_resources_capacity"/>
+	<menuitem id="menu_resources_infrastructures" name="Infrastructures" parent="menu_resources_infrastructure" action="action_resources_infrastructure" sequence="1"/>
+	<menuitem id="menu_resources_keyword" name="Keywords" parent="menu_resources_infrastructure" action="action_resources_keyword" sequence="2"/>
+	<menuitem id="menu_resources_scientific_domain" name="Scientific Domains" parent="menu_resources_infrastructure" action="action_resources_scientific_domain" sequence="3"/>
 </odoo>

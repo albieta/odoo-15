@@ -1,23 +1,19 @@
 <odoo>
     <data>
-        <record id="energyApplicationTheme" model="resources.application_theme">
-            <field name="name">Energy</field>
+        <record id="mathematicsScientificDomain" model="resources.scientific_domain">
+            <field name="name">Mathematics</field>
         </record>
 
-        <record id="healthEngineeringApplicationTheme" model="resources.application_theme">
-            <field name="name">Health Engineering</field>
+        <record id="universeSciencesScientificDomain" model="resources.scientific_domain">
+            <field name="name">Universe Sciences</field>
         </record>
 
-        <record id="itElectronicsTelecomApplicationTheme" model="resources.application_theme">
-            <field name="name">IT, Electornics and Telecom</field>
+        <record id="materialsEngineeringScientificDomain" model="resources.scientific_domain">
+            <field name="name">Materials Engineering</field>
         </record>
 
-        <record id="environmentApplicationTheme" model="resources.application_theme">
-            <field name="name">Environment</field>
-        </record>
-
-        <record id="industry4ApplicationTheme" model="resources.application_theme">
-            <field name="name">Industry 4.0</field>
+        <record id="humanMobilityScientificDomain" model="resources.scientific_domain">
+            <field name="name">Human Mobility</field>
         </record>
     </data>
 </odoo>
