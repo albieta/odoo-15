@@ -12,3 +12,4 @@ odoo-addons-oca-website==15.0.20230324.0
 odoo-addons-oca-multi-company==15.0.20230502.0
 pysftp==0.2.9
 odoo-addons-oca-server-tools==15.0.20230323.0
+odoo-addons-oca-server-auth==15.0.20230702.0

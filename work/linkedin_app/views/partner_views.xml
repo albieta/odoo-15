@@ -8,11 +8,6 @@
          <field name="arch" type="xml">
              <xpath expr="//field[@name='category_id']" position="after">
                  <field name="linkedin"/>
-                 <label for='linkedin_confirm' string=""/>
-                 <div class="o_row">
-                     <field name="linkedin_confirm"/>
-                     <label for="linkedin_confirm" string="I give permission to use LinkedIn information"/>
-                 </div>
              </xpath>
          </field>
     </record>

@@ -14,7 +14,7 @@ class ResPartnerInherit(models.Model):
     _inherit = 'res.partner'
 
     linkedin = fields.Char(string="LinkedIn", widget="url")
-    linkedin_confirm = fields.Boolean(string="")
+    linkedin_confirm = fields.Boolean(default=True)
 
     def update_partner_image(self):
         if self.linkedin != False:
@@ -33,20 +33,24 @@ class ResPartnerInherit(models.Model):
             # GET a profile
             profile = api.get_profile(urllib.parse.unquote(self.linkedin).split("/in/")[1].strip("/"))
 
-            headline = profile['headline']
+            try:
+                headline = profile['headline']
+                if headline:
+                    self.write({
+                        'function': headline
+                    })
+            except Exception as e:
+                print("Could not Update the headline from linkedin")
 
-            image_url = profile['displayPictureUrl'] + profile['img_800_800']
-
-            # Get the URL of the first image result
-            if image_url:
-                image_data = urllib.request.urlopen(image_url).read()
-                self.write({
-                    'image_1920': base64.b64encode(image_data),
-                })
-            if headline:
-                self.write({
-                    'function': headline
-                })
+            try:
+                image_url = profile['displayPictureUrl'] + profile['img_800_800']
+                if image_url:
+                    image_data = urllib.request.urlopen(image_url).read()
+                    self.write({
+                        'image_1920': base64.b64encode(image_data),
+                    })
+            except Exception as e:
+                 print("Could not Update the headline from linkedin")
 
     @api.model 
     def cron_update_image(self):
@@ -58,10 +62,7 @@ class ResPartnerInherit(models.Model):
     @api.constrains('linkedin', 'linkedin_confirm')
     def _check_linkedin(self):
         for record in self:
-            if not record.linkedin_confirm and record.linkedin:
-                raise ValidationError("Please give permissions to use LinkedIn information")
-            else:
-                record.update_partner_image()
+            record.update_partner_image()
 
     def is_valid_linkedin_url(self, url):
         pattern = re.compile(r'^https?://(?:www\.)?linkedin\.com/(?:in|pub|company)/.*$')
