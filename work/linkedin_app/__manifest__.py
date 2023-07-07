@@ -7,8 +7,10 @@
 "author": "Unite",
 'depends': [
     "base",
-    "contacts"
-    
+    "contacts",
+    "web", 
+    "base_setup", 
+    "auth_signup"
 ],
 "application": True,
 "data": [
@@ -16,6 +18,7 @@
     "views/user_views.xml",
     "views/res_config_settings_view.xml",
     "views/config_parameters.xml",
+    'views/auth_oauth_templates.xml',
     "data/cron.xml",
 ]
 }

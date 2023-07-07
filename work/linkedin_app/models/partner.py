@@ -28,7 +28,8 @@ class ResPartnerInherit(models.Model):
             try:
                 api = Linkedin(email, password)
             except Exception as e:
-                raise ValidationError("Error authenticating with LinkedIn: %s" % str(e))
+                if(str(e) != 'CHALLENGE'):
+                    raise ValidationError("Error authenticating with LinkedIn: %s" % str(e))
 
             # GET a profile
             profile = api.get_profile(urllib.parse.unquote(self.linkedin).split("/in/")[1].strip("/"))
