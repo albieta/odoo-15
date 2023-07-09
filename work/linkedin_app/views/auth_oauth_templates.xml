@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<!--
         <template id="providers" name="OAuth Linkedin Provider">
             <t t-set="base_url" t-value="env['ir.config_parameter'].sudo().get_param('web.base.url')"/>
             <em t-attf-class="d-block text-center text-muted small my-#{len(providers) if len(providers) &lt; 3 else 3}">- or -</em>
@@ -33,5 +34,5 @@
             <xpath expr="//div[hasclass('o_login_auth')]" position="inside">
                 <t t-call="linkedin_app.providers"/>
             </xpath>
-        </template>
+        </template> -->
 </odoo>

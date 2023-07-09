@@ -25,11 +25,18 @@ class ResPartnerInherit(models.Model):
             email = self.env['ir.config_parameter'].sudo().get_param('linkedin_email')
             password = self.env['ir.config_parameter'].sudo().get_param('linkedin_password')
 
-            try:
-                api = Linkedin(email, password)
-            except Exception as e:
-                if(str(e) != 'CHALLENGE'):
-                    raise ValidationError("Error authenticating with LinkedIn: %s" % str(e))
+            max_attempts = 5
+
+            for attempt in range(max_attempts):
+                try:
+                    api = Linkedin(email, password)
+                    break
+                except Exception as e:
+                    if str(e) != 'CHALLENGE':
+                        raise ValidationError("Error authenticating with LinkedIn: %s" % str(e))
+                    else:
+                        if(attempt == max_attempts - 1):
+                            raise ValidationError("Error authenticating with LinkedIn: %s" % str(e))
 
             # GET a profile
             profile = api.get_profile(urllib.parse.unquote(self.linkedin).split("/in/")[1].strip("/"))
