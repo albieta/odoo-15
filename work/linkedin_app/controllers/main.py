@@ -118,7 +118,7 @@ class LinkedInAuth(Home):
             try:
                 credentials = request.env['res.users'].sudo().oauth_linkedin(user_id, user_name, user_surname, user_linkedin_link, email_address, str(access_token))
                 request.env.cr.commit()
-                url = '/web#menu_id=1'
+                url = '/'
                 resp = login_and_redirect(*credentials, redirect_url=url)
                 user = request.env['res.users'].sudo().search([('login', '=', credentials[1])], limit=1)
                 if (image_data):

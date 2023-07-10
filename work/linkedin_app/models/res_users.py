@@ -66,5 +66,5 @@ class ResUsers(models.Model):
                 'lang': lang_code,
                 'active': True,
             }
-            newUser = self.create(values)
-            return newUser.login
+            _, login, _ = self.signup(values)
+            return login
