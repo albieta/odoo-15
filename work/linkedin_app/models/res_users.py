@@ -36,6 +36,12 @@ class ResUsers(models.Model):
         try:
             oauth_user = self.search([("oauth_linkedin_id", "=", user_id)])
             if not oauth_user:
+                existing_user = self.search([("login", "=", email_address)])
+                if existing_user:
+                    existing_user.write({'oauth_linkedin_token': token})
+                    existing_user.write({'oauth_access_token': token})
+                    existing_user.write({'linkedin': user_linkedin_link})
+                    return existing_user.login
                 raise AccessDenied()
             assert len(oauth_user) == 1
             oauth_user.write({'oauth_linkedin_token': token})
