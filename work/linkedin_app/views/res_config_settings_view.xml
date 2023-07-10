@@ -27,6 +27,18 @@
                                         Change the default configuration credentials to use LinkedIn API
                                     </div>
                                     <div>
+                                        <label for="linkedin_auth">Enable LinkedIn Authentication:</label>
+                                        <field name="linkedin_auth" widget="boolean_toggle" default="False"/>
+                                    </div>
+                                    <div>
+                                        <label for="linkedin_client_id">Client ID:</label>
+                                        <field name="linkedin_client_id" placeholder="Your LinkedIn Client ID"/>
+                                    </div>
+                                    <div>
+                                        <label for="linkedin_secret_id">Secret ID:</label>
+                                        <field name="linkedin_secret_id" placeholder="Your LinkedIn Secret ID"/>
+                                    </div>
+                                    <div>
                                         <label for="linkedin_email">Email:</label>
                                         <field name="linkedin_email" placeholder="argdevelop1@gmail.com"/>
                                     </div>

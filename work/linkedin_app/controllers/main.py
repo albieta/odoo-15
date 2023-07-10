@@ -12,6 +12,7 @@ from odoo import registry as registry_get
 import urllib.request
 import urllib.parse
 import base64
+import time
 
 _logger = logging.getLogger(__name__)
 
@@ -26,8 +27,8 @@ class LinkedInAuth(Home):
 
         # Set the necessary parameters for the LinkedIn access token request
         grant_type = "authorization_code"
-        client_id = "77hn2b5he74sal"
-        client_secret = "bWbTAG5CzFXTgSJh"
+        client_id = str(env['ir.config_parameter'].sudo().get_param('linkedin_client_id'))
+        client_secret = str(env['ir.config_parameter'].sudo().get_param('linkedin_secret_id'))
         redirect_uri = str(env['ir.config_parameter'].sudo().get_param('web.base.url')) + "/auth_oauth/linkedin"
 
         # Construct the URL for the access token request
@@ -92,15 +93,34 @@ class LinkedInAuth(Home):
                                     image_data = urllib.request.urlopen(image_url).read()
                                     break
 
+        access_user_email_url = "https://api.linkedin.com/v2/emailAddress"
+
+        response_email = requests.get(
+            access_user_email_url,
+            params={
+                "q": "members",
+                "projection": "(elements*(handle~))",
+                "oauth2_access_token": str(access_token)
+            }
+        )
+
+        email_address = ""
+
+        access_user_email = response_email.json()
+        elements = access_user_email.get("elements")
+        if elements:
+            profile_email_data = elements[0].get("handle~")
+            if profile_email_data:
+                email_address = profile_email_data.get("emailAddress")
+
         registry = registry_get(env.cr.dbname)
         with registry.cursor() as cr:
             try:
-                env = api.Environment(cr, SUPERUSER_ID, request.context)
-                credentials = env['res.users'].sudo().oauth_linkedin(user_id, user_name, user_surname, user_linkedin_link, str(access_token))
-                cr.commit()
+                credentials = request.env['res.users'].sudo().oauth_linkedin(user_id, user_name, user_surname, user_linkedin_link, email_address, str(access_token))
+                request.env.cr.commit()
                 url = '/web#menu_id=1'
                 resp = login_and_redirect(*credentials, redirect_url=url)
-                user = env['res.users'].sudo().search([('login', '=', credentials[1])], limit=1)
+                user = request.env['res.users'].sudo().search([('login', '=', credentials[1])], limit=1)
                 if (image_data):
                     user.image_1920 = base64.b64encode(image_data)
                 return resp

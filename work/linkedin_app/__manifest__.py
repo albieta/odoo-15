@@ -10,7 +10,8 @@
     "contacts",
     "web", 
     "base_setup", 
-    "auth_signup"
+    "auth_signup",
+    "auth_oauth",
 ],
 "application": True,
 "data": [

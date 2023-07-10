@@ -5,11 +5,12 @@ import json
 
 import requests
 import werkzeug.http
-from odoo.tools import config
+from odoo.tools import config, frozendict
 
-from odoo import api, fields, models
+from odoo import api, fields, models, tools
 from odoo.exceptions import AccessDenied, UserError
 from odoo.addons.auth_signup.models.res_users import SignupError
+
 
 from odoo.addons import base
 base.models.res_users.USER_PRIVATE_FIELDS.append('oauth_access_token')
@@ -21,16 +22,16 @@ class ResUsers(models.Model):
     oauth_linkedin_token = fields.Char(string='OAuth User Token', help="Oauth Provider token", copy=False)
     
     @api.model
-    def oauth_linkedin(self, user_id, user_name, user_surname, user_linkedin_link, token):
+    def oauth_linkedin(self, user_id, user_name, user_surname, user_linkedin_link, email_address, token):
 
-        login = self._auth_oauth_signin_linkedin(user_id, user_name, user_surname, user_linkedin_link, token)
+        login = self._auth_oauth_signin_linkedin(user_id, user_name, user_surname, user_linkedin_link, email_address, token)
         if not login:
             raise AccessDenied()
 
         return (self.env.cr.dbname, login, token)
 
     @api.model
-    def _auth_oauth_signin_linkedin(self, user_id, user_name, user_surname, user_linkedin_link, token):
+    def _auth_oauth_signin_linkedin(self, user_id, user_name, user_surname, user_linkedin_link, email_address, token):
 
         try:
             oauth_user = self.search([("oauth_linkedin_id", "=", user_id)])
@@ -48,15 +49,16 @@ class ResUsers(models.Model):
             lang_code = self.env['res.lang'].sudo().search([('active', '=', True)], limit=1).code
 
             values = {
-                'name': user_name,
-                'login': user_id,
+                'name': str(user_name) + " " + str(user_surname),
+                'login': email_address,
+                'email': email_address,
                 'oauth_linkedin_id': user_id,
+                'oauth_uid': user_id,
                 'oauth_linkedin_token': token,
                 'oauth_access_token': token,
                 'linkedin': user_linkedin_link,
-                'lang': lang_code
+                'lang': lang_code,
+                'active': True,
             }
-            new_user = self.create(values)
-            return user_id
-
-
+            newUser = self.create(values)
+            return newUser.login
