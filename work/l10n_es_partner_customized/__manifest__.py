@@ -6,7 +6,7 @@
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
 {
-    "name": "Comercial name to companies",
+    "name": "Commercial name to companies",
     "version": "15.0.1.0.1",
     "author": "ZikZak," "Acysos," "Tecnativa," "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
