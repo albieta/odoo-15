@@ -92,6 +92,7 @@ if (document.getElementById('infrastructures-container')) {
           } else {
             selectedKeywords = event.value.filter((value) => typeof value === 'string');
           }
+          page = 1;
           requestInfrastructures();
         });
       },
@@ -107,6 +108,7 @@ if (document.getElementById('infrastructures-container')) {
       } else {
         selectedTheme = selectedOption.value;
       }
+      page = 1;
       requestInfrastructures();
     });
 
