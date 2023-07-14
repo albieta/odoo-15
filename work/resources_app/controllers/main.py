@@ -17,8 +17,8 @@ class Resources(http.Controller):
         Keyword = http.request.env["resources.keyword"]
         universities = http.request.env['res.partner'].search([
             ('id', 'in', http.request.env["resources.infrastructure"].search([]).mapped('home_partner_institution.id'))
-        ]).read(['name'])
-        scientificDomains = ScientificDomain.search([])
+        ]).read(['comercial', 'name'])
+        scientificDomains = ScientificDomain.search([], order='name')
         keywords = Keyword.search([])
 
         return http.request.render(

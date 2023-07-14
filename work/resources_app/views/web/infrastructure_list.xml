@@ -39,8 +39,18 @@
                                 <li class="list-group-item"><strong>Equipment: </strong><t t-esc="res.equipment"/></li>
                                 <li class="list-group-item"><strong>Keywords: </strong><span t-foreach="res.keywords" t-as="keyword"><t t-esc="keyword.name"/><t t-if="not keyword==res.keywords[-1]">, </t></span></li>
                                 <li class="list-group-item"><strong>Technical staff available: </strong><t t-if="res.technical_staff">Yes</t><t t-if="not res.technical_staff">No</t></li>
-                                <li class="list-group-item"><strong>Online booking system available: </strong><t t-if="res.booking_system">Yes</t><t t-if="not res.booking_system">No</t></li>
-                                <li class="list-group-item"><strong>Remote access available: </strong><t t-if="res.remote_access_policy">Yes</t><t t-if="not res.remote_access_policy">No</t></li>
+                                <li class="list-group-item">
+                                    <strong>Online booking system available: </strong>
+                                    <t t-if="res.booking_system">Yes</t>
+                                    <t t-if="not res.booking_system">No</t>
+                                    <t t-if="res.booking_system_details">, <t t-esc="res.booking_system_details"/></t>
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Remote access available: </strong>
+                                    <t t-if="res.remote_access_policy">Yes</t>
+                                    <t t-if="not res.remote_access_policy">No</t>
+                                    <t t-if="res.remote_access_policy_details">, <t t-esc="res.remote_access_policy_details"/></t>
+                                </li>
                                 <li class="list-group-item"><strong>Open to external users: </strong><t t-if="res.external_users">Yes</t><t t-if="not res.external_users">No</t></li>
                                 <li class="list-group-item"><strong>Home Partner Institution: </strong><t t-esc="res.home_partner_institution.display_name"/></li>
                                 <li class="list-group-item"><strong>Scientific domain(s): </strong><span t-foreach="res.scientific_domain" t-as="theme"><t t-esc="theme.name"/><t t-if="not theme==res.scientific_domain[-1]">, </t></span></li>

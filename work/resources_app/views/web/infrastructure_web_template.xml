@@ -46,10 +46,16 @@
                                 <div class="button-container">
                                     <t t-foreach="universities" t-as="university">
                                         <t t-if="university['name'] == selectedUniversity">
-                                            <button type="button" class="button filter-btn university-btn selected" t-att-data-university="university['name']"><t t-esc="university['name']"/></button>
+                                            <button type="button" class="button filter-btn university-btn selected" t-att-data-university="university['name']">
+                                                <t t-if="university['comercial']"><t t-esc="university['comercial']"/></t>
+                                                <t t-if="not university['comercial']"><t t-esc="university['name']"/></t>
+                                            </button>
                                         </t>
                                         <t t-if="university['name'] != selectedUniversity">
-                                            <button type="button" class="button filter-btn university-btn" t-att-data-university="university['name']"><t t-esc="university['name']"/></button>
+                                            <button type="button" class="button filter-btn university-btn" t-att-data-university="university['name']">
+                                                <t t-if="university['comercial']"><t t-esc="university['comercial']"/></t>
+                                                <t t-if="not university['comercial']"><t t-esc="university['name']"/></t>
+                                            </button>
                                         </t>
                                         
                                     </t>
